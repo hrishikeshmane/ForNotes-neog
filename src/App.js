@@ -29,7 +29,6 @@ function App() {
   }
 
   useEffect(() => {
-    if (user){
       // set user data in session storage
       sessionStorage.setItem("uid", user?.user?.uid);
       sessionStorage.setItem("email", user?.user?.email);
@@ -38,8 +37,7 @@ function App() {
   
       //Make entry for new user in db
       setUser();
-    }
-  }, [user, loading, error])
+  }, [user])
   
 
   if (user) {
