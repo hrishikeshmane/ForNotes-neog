@@ -3,24 +3,24 @@ import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { db } from "./firebase";
-import UnarchiveIcon from '@mui/icons-material/Unarchive';import DeleteIcon from '@mui/icons-material/Delete';
+import UnarchiveIcon from "@mui/icons-material/Unarchive";
+import DeleteIcon from "@mui/icons-material/Delete";
 import nextId from "react-id-generator";
 
 function Archives({ view, setView }) {
-  let notesListDoc = doc(db, 
-    "Notes", sessionStorage.getItem("email"));
+  let notesListDoc = doc(db, "Notes", sessionStorage.getItem("email"));
   const [valueNotes, loadingNotes, errorNotes] = useDocument(notesListDoc, {
     snapshotListenOptions: { includeMetadataChanges: true },
   });
   let notes = valueNotes?.data()?.archiveList ?? [];
 
-  async function archiveNote(note){
-    await updateDoc(notesListDoc, {archiveList: arrayRemove(note)})
-    await updateDoc(notesListDoc, {notesList: arrayUnion(note)})
+  async function archiveNote(note) {
+    await updateDoc(notesListDoc, { archiveList: arrayRemove(note) });
+    await updateDoc(notesListDoc, { notesList: arrayUnion(note) });
   }
 
-  async function deleteNote(note){
-    await updateDoc(notesListDoc, {archiveList: arrayRemove(note)})
+  async function deleteNote(note) {
+    await updateDoc(notesListDoc, { archiveList: arrayRemove(note) });
   }
 
   return (
