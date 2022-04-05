@@ -6,3 +6,44 @@
   background-color: #202124;
   color: white;
 }
+
+.grid-container {
+  height: 100vh;
+  position: relative;
+  display: grid;
+  grid-template-rows: 55px 1fr;
+
+  grid-template-areas:
+    "header"
+    "main";
+}
+.signin-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: #1515169a;
+  backdrop-filter: blur(2px);
+}
+.signin-button {
+  font-size: large;
+  margin: auto;
+  border-radius: 10px;
+  padding: 1rem 4rem;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+}
+.signin-button:hover {
+  background-color: rgb(169, 200, 228);
+}
+.signin-loading {
+  color: #202124;
+  font-size: large;
+  margin: auto;
+  background-color: white;
+  border-radius: 10px;
+  padding: 1rem 4rem;
+  justify-content: center;
+  align-items: center;
+}
