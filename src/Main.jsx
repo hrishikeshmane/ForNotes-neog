@@ -42,7 +42,9 @@ const Main = ({ view, setView }) => {
               return (
                 <div
                   key={eachNote.id}
-                  className={view === "list" ? "note list-note" : "note"}
+                  className={`note ${view === "list" && "list-note"} ${
+                    eachNote.noteColor
+                  }`}
                 >
                   <h4>{eachNote.title}</h4>
                   {eachNote.note.split("\n").map((sentence) => (

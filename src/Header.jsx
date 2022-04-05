@@ -3,12 +3,13 @@ import { Avatar, InputBase, Paper } from "@mui/material";
 import TableRowsIcon from "@mui/icons-material/TableRows";
 import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
 import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
 import { auth } from "./firebase";
 import { signOut } from "firebase/auth";
 
-const Header = ({ view, setView, setSearchField }) => {
+const Header = ({ view, setView, setSearchField, setOpenFilter }) => {
   const navigate = useNavigate();
 
   const signOutHandler = () => {
@@ -58,6 +59,12 @@ const Header = ({ view, setView, setSearchField }) => {
           ) : (
             <TableRowsIcon className="view-toggle" />
           )}
+        </button>
+        <button
+          className="toggle-button"
+          onClick={() => setOpenFilter((prevState) => !prevState)}
+        >
+          <FilterAltIcon className="view-toggle" />
         </button>
         <Avatar
           sx={{ cursor: "pointer" }}

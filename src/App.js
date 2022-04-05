@@ -8,10 +8,12 @@ import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Archives from "./Archives";
 import Search from "./Search";
+import Filter from "./Filter";
 
 function App() {
   const [searchField, setSearchField] = useState(null);
   const [view, setView] = useState("grid");
+  const [openFilter, setOpenFilter] = useState(false);
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
 
   async function setUser() {
@@ -48,6 +50,7 @@ function App() {
               view={view}
               setView={setView}
               setSearchField={setSearchField}
+              setOpenFilter={setOpenFilter}
             />
             <Routes>
               <Route
@@ -66,6 +69,8 @@ function App() {
                 element={<Search view={view} searchField={searchField} />}
               />
             </Routes>
+
+            <Filter openFilter={openFilter} setOpenFilter={setOpenFilter} />
           </div>
         </div>
       </BrowserRouter>

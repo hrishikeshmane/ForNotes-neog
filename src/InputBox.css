@@ -1,5 +1,9 @@
+::-webkit-scrollbar {
+  display: none;
+}
+
 .input-container {
-  width: 65%;
+  width: 95%;
   max-width: 600px;
   height: fit-content;
   border: 1px solid #5f6368;
@@ -10,7 +14,7 @@
   display: flex;
   flex-direction: column;
 }
-input[type="text"] {
+.input-container > input[type="text"] {
   width: 100% !important;
   font-family: "Google Sans", Roboto, Arial, sans-serif;
   font-weight: 500;
@@ -35,7 +39,7 @@ textarea {
   background-color: transparent;
   font-size: 1rem;
   resize: none;
-  /* margin-bottom: 5px; */
+  margin-bottom: 8px;
 }
 textarea:focus-visible {
   outline: none;
@@ -51,9 +55,8 @@ textarea:focus-visible {
   display: flex;
   align-items: center;
   color: #dadce0;
-  /* background-color: tomato; */
 }
-.input-action-container > button {
+.input-action-container > .save-btn {
   font-family: "Google Sans", Roboto, Arial, sans-serif;
   font-size: 0.875rem;
   font-weight: 500;
@@ -65,6 +68,53 @@ textarea:focus-visible {
   padding: 5px 15px;
   border-radius: 8px;
 }
-.input-action-container > button:hover {
+.input-action-container > .save-btn:hover {
   background-color: rgba(255, 255, 255, 0.075);
+}
+
+.form-tags {
+  margin-right: 0.5rem;
+}
+
+.form-tags > input[type="text"] {
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: white;
+  padding: 10px 0px;
+  border: none;
+  padding: 6px 10px;
+  margin-left: 5px;
+  margin-bottom: 7px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.075);
+}
+.tags-box {
+  margin-bottom: 7px;
+  display: flex;
+  max-width: 280px;
+  overflow-x: auto;
+}
+
+.color-box {
+  margin-bottom: 7px;
+}
+.color-select {
+  width: 25px;
+  height: 25px;
+  margin-left: 5px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background-color: #202124;
+}
+
+.color-selected {
+  border: 1px solid whitesmoke;
+}
+.red {
+  background-color: rgba(197, 4, 4, 0.253);
+}
+.yellow {
+  background-color: rgba(189, 192, 32, 0.123);
 }
