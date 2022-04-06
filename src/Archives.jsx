@@ -35,12 +35,19 @@ function Archives({ view, setView }) {
             return (
               <div
                 key={eachNote.id}
-                className={view === "list" ? "note list-note" : "note"}
+                className={`note ${view === "list" && "list-note"} ${
+                  eachNote.noteColor
+                }`}
               >
                 <h4>{eachNote.title}</h4>
                 {eachNote.note.split("\n").map((sentence) => (
                   <p key={nextId("text-id-")}> {sentence} </p>
                 ))}
+                <div className="tags-bar">
+                  {eachNote.tags.map((tag) => (
+                    <small key={nextId("tag-id")}>{tag}</small>
+                  ))}
+                </div>
                 <div className="note-actions">
                   <button onClick={() => archiveNote(eachNote)}>
                     <UnarchiveIcon />

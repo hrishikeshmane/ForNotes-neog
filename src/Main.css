@@ -83,6 +83,22 @@ main {
 .note-actions > button:hover {
   color: white;
 }
+.tags-bar {
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  max-width: 190px;
+  overflow-x: auto;
+}
+.tags-bar > small {
+  width: fit-content;
+  height: 13px;
+  font-size: 0.7rem;
+  padding-inline: 0.5rem;
+  margin-right: 0.25rem;
+  background-color: #414141;
+  border-radius: 10px;
+}
 @media (min-width: 100px) {
   .notes-container {
     -webkit-column-count: 1;

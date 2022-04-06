@@ -54,6 +54,11 @@ const Main = ({ view, setView }) => {
                   {eachNote.note.split("\n").map((sentence) => (
                     <p key={nextId("text-id-")}> {sentence} </p>
                   ))}
+                  <div className="tags-bar">
+                    {eachNote.tags.map((tag) => (
+                      <small key={nextId("tag-id")}>{tag}</small>
+                    ))}
+                  </div>
                   <div className="note-actions">
                     <button onClick={() => archiveNote(eachNote)}>
                       <ArchiveIcon />
