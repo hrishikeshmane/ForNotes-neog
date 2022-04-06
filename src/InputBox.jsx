@@ -66,11 +66,15 @@ const InputBox = ({ notes, addNote, deleteNote }) => {
       <div className="input-action-container">
         <div className="color-box">
           <button
-            className="color-select red"
+            className={`color-select red ${
+              noteColor === "red" && "color-selected"
+            }`}
             onClick={() => handleNoteColor("red")}
           ></button>
           <button
-            className="color-select yellow"
+            className={`color-select yellow ${
+              noteColor === "yellow" && "color-selected"
+            }`}
             onClick={() => handleNoteColor("yellow")}
           ></button>
         </div>
