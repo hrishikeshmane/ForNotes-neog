@@ -1,32 +1,33 @@
 import { Chip, Divider, Drawer, Stack, Switch } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useState } from "react";
+import { useFilter } from "./context/FilterProvider";
 
 const Filter = ({ openFilter, setOpenFilter }) => {
-  const [selectedColors, setselectedColors] = useState([
-    "default",
-    "red",
-    "yellow",
-  ]);
-  const [selectedTags, setselectedTags] = useState([]);
-
-  const removeTag = (tag) => {
-    setselectedTags(selectedTags.filter((item) => item !== tag));
-  };
+  const { filterState, filterDispatch } = useFilter();
 
   const toggleColor = (color) => {
-    selectedColors.includes(color)
-      ? setselectedColors(selectedColors.filter((item) => item !== color))
-      : setselectedColors([...selectedColors, color]);
+    filterDispatch({ type: "FILTER_BY_COLORS", payload: color });
+  };
+
+  const removeTag = (tag) => {
+    filterDispatch({ type: "REMOVE_TAG", payload: tag });
   };
 
   const hadleTagSubmit = (e) => {
     e.preventDefault();
     let tag = e.target[0].value;
-    if (!selectedTags.includes(tag)) {
-      setselectedTags([...selectedTags, tag]);
+    if (!filterState.tags.includes(tag)) {
+      filterDispatch({ type: "ADD_TAG", payload: tag });
     }
     e.target[0].value = "";
+  };
+
+  const handleSort = () => {
+    if (filterState.sortByDate === "asc") {
+      filterDispatch({ type: "SORT_BY_DATE_DSC" });
+    } else {
+      filterDispatch({ type: "SORT_BY_DATE_ASC" });
+    }
   };
 
   return (
@@ -48,7 +49,7 @@ const Filter = ({ openFilter, setOpenFilter }) => {
         <Divider sx={{ my: 1 }} />
 
         <Box sx={{ my: 2 }}>
-          <h4>Sort by Date-</h4>
+          <h4>Sort by Date -</h4>
           <Stack
             direction="row"
             spacing={1}
@@ -56,13 +57,16 @@ const Filter = ({ openFilter, setOpenFilter }) => {
             sx={{ display: "flex", justifyContent: "center" }}
           >
             <p>DSC</p>
-            <Switch defaultChecked />
+            <Switch
+              checked={filterState.sortByDate === "asc" ? true : false}
+              onChange={handleSort}
+            />
             <p>ASC</p>
           </Stack>
         </Box>
 
         <Box sx={{ my: 2 }}>
-          <h4>Colors-</h4>
+          <h4>Colors -</h4>
           <Stack
             direction="row"
             spacing={1}
@@ -71,19 +75,19 @@ const Filter = ({ openFilter, setOpenFilter }) => {
           >
             <button
               className={`color-select red ${
-                selectedColors.includes("red") && "color-selected"
+                filterState.colors.includes("red") && "color-selected"
               }`}
               onClick={() => toggleColor("red")}
             ></button>
             <button
               className={`color-select yellow ${
-                selectedColors.includes("yellow") && "color-selected"
+                filterState.colors.includes("yellow") && "color-selected"
               }`}
               onClick={() => toggleColor("yellow")}
             ></button>
             <button
               className={`color-select ${
-                selectedColors.includes("default") && "color-selected"
+                filterState.colors.includes("default") && "color-selected"
               }`}
               onClick={() => toggleColor("default")}
             ></button>
@@ -91,14 +95,14 @@ const Filter = ({ openFilter, setOpenFilter }) => {
         </Box>
 
         <Box sx={{ my: 2 }}>
-          <h4>Tags-</h4>
+          <h4>Tags -</h4>
           <Box sx={{ my: 1, display: "flex", justifyContent: "center" }}>
             <form className="form-tags" onSubmit={hadleTagSubmit}>
               <input type="text" placeholder="Enter tags"></input>
             </form>
           </Box>
           <Box>
-            {selectedTags.map((tag) => (
+            {filterState.tags.map((tag) => (
               <Chip
                 variant="outlined"
                 sx={{ m: 0.3, color: "whitesmoke" }}

@@ -7,6 +7,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { db } from "./firebase";
 import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { applyFilter } from "./context/utils/filters";
+import { useFilter } from "./context/FilterProvider";
 
 const Main = ({ view, setView }) => {
   let notesListDoc = doc(db, "Notes", sessionStorage.getItem("email"));
@@ -28,6 +30,8 @@ const Main = ({ view, setView }) => {
     await updateDoc(notesListDoc, { notesList: arrayRemove(note) });
   }
 
+  const { filterState } = useFilter();
+
   return (
     <main>
       <InputBox notes={notes} addNote={addNote} deleteNote={deleteNote} />
@@ -38,7 +42,7 @@ const Main = ({ view, setView }) => {
           }
         >
           <Masonry>
-            {notes.reverse().map((eachNote) => {
+            {applyFilter(notes, filterState).map((eachNote) => {
               return (
                 <div
                   key={eachNote.id}
