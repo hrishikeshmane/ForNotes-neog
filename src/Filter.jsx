@@ -42,7 +42,7 @@ const Filter = ({ openFilter, setOpenFilter }) => {
           backgroundColor: "#262729",
           height: "100%",
           width: 250,
-          color: "white",
+          color: "#FFF",
         }}
       >
         <h1>Filter</h1>

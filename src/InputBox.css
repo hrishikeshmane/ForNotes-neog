@@ -4,11 +4,11 @@
 
 .input-container {
   width: 95%;
-  max-width: 600px;
+  max-width: 37.5rem;
   height: fit-content;
   border: 1px solid #5f6368;
   border-radius: 8px;
-  box-shadow: 0 15px 30px rgb(0 0 0 / 65%);
+  box-shadow: 0 15px 30px #000000a6;
   padding: 1rem;
   padding-top: 0px;
   display: flex;
@@ -31,13 +31,12 @@ textarea {
   width: 100% !important;
   height: 100px !important;
 
+  font-size: 0.875rem;
   font-family: Roboto, Arial, sans-serif;
-  font-size: 0.875rem !important;
   font-weight: 400;
   color: white;
   border: none;
   background-color: transparent;
-  font-size: 1rem;
   resize: none;
   margin-bottom: 8px;
 }

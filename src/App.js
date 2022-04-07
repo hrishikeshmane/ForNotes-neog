@@ -9,12 +9,19 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Archives from "./Archives";
 import Search from "./Search";
 import Filter from "./Filter";
+import { Snackbar } from "@mui/material";
+import nextId from "react-id-generator";
 
 function App() {
   const [searchField, setSearchField] = useState(null);
   const [view, setView] = useState("grid");
   const [openFilter, setOpenFilter] = useState(false);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar(false);
+  };
 
   async function setUser() {
     try {
@@ -27,6 +34,7 @@ function App() {
       );
     } catch (e) {
       console.error("Error adding document: ", e);
+      setOpenSnackbar(true);
     }
   }
 
@@ -71,6 +79,14 @@ function App() {
             </Routes>
 
             <Filter openFilter={openFilter} setOpenFilter={setOpenFilter} />
+            <Snackbar
+              anchorOrigin={{ vertical: "top", horizontal: "right" }}
+              open={openSnackbar}
+              autoHideDuration={3000}
+              onClose={handleCloseSnackbar}
+              message={`Error adding document`}
+              key={nextId("snackbar-")}
+            />
           </div>
         </div>
       </BrowserRouter>
