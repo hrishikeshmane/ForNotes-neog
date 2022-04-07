@@ -1,0 +1,133 @@
+main {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  padding: 2rem;
+}
+.wrapper {
+  width: 90%;
+  margin: 50px auto;
+}
+.notes-container {
+  -webkit-column-count: 3;
+  -moz-column-count: 3;
+  column-count: 3;
+  -webkit-column-gap: auto;
+  column-gap: auto;
+  column-fill: auto;
+}
+.note {
+  position: relative;
+  width: 240px;
+  height: fit-content;
+  border: 1px solid #5f6368;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  margin-inline: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+.note-actions {
+  margin-top: 5px;
+  margin-left: auto;
+}
+.note-actions > button {
+  margin-left: 5px;
+}
+
+.note > h4 {
+  margin-bottom: 0.5rem;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+.note > p {
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 0.875rem !important;
+  font-weight: 400;
+}
+.note > span {
+  position: absolute;
+  width: 100%;
+  height: 2rem;
+  left: 0px;
+  bottom: 0px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background: linear-gradient(0.25turn, #64646400 10%, #9b9ba131);
+}
+.list-note {
+  width: 70%;
+  max-width: 600px;
+}
+.note-actions {
+  font-size: smaller;
+  margin-left: auto;
+  margin-bottom: -12px;
+  margin-right: -6px;
+  margin-top: 0px;
+}
+.note-actions > button {
+  padding: 0px;
+  color: #5f6368;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.note-actions > .MuiSvgIcon-root {
+  margin-inline-start: 2px;
+}
+.note-actions > button:hover {
+  color: white;
+}
+.tags-bar {
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  max-width: 190px;
+  overflow-x: auto;
+}
+.tags-bar > small {
+  width: fit-content;
+  height: 13px;
+  font-size: 0.7rem;
+  padding-inline: 0.5rem;
+  margin-right: 0.25rem;
+  background-color: #414141;
+  border-radius: 10px;
+}
+@media (min-width: 100px) {
+  .notes-container {
+    -webkit-column-count: 1;
+    -moz-column-count: 3;
+    column-count: 1;
+  }
+}
+
+@media (min-width: 600px) {
+  .notes-container {
+    -webkit-column-count: 2;
+    -moz-column-count: 3;
+    column-count: 2;
+  }
+}
+
+@media (min-width: 960px) {
+  .notes-container {
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+  }
+}
+
+@media (min-width: 1200px) {
+  .notes-container {
+    -webkit-column-count: 4;
+    -moz-column-count: 4;
+    column-count: 4;
+  }
+}
